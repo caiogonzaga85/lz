@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - LZ Barber</title>
+
+    <!-- Carrega o estilo principal -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ======================
+           CORREÇÃO 1 — ENTRADA
+        =======================*/
+        .cont-page {
+            opacity: 1 !important;   /* garante que aparece */
+            padding: 120px 20px 40px;
+            animation: contFadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes contFadeIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ======================
+           CORREÇÃO 2 — SAÍDA
+        =======================*/
+        .exit {
+            animation: contFadeOut 0.45s ease forwards !important;
+        }
+
+        @keyframes contFadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to   { opacity: 0; transform: translateY(40px); }
+        }
+
+        /* ======================
+           BOTÃO VOLTAR
+        =======================*/
+        #voltarBtn {
+            position: fixed;
+            top: 85px;
+            left: 20px;
+            background: #000;
+            color: #fff;
+            border: 2px solid #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 9000;
+            transition: .25s;
+        }
+
+        #voltarBtn:hover {
+            transform: scale(1.05);
+        }
+
+        /* ======================
+           CARDS DA PÁGINA CONTATO
+        =======================*/
+        .contato-card {
+            max-width: 360px;
+            margin: 0 auto;
+        }
+
+        .contato-card .overlay h2 {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <img src="img/branca.jpg" alt="">
+</div>
+
+<!-- BOTÃO VOLTAR (agora funcional e visível SEMPRE) -->
+<button id="voltarBtn">← Voltar</button>
+
+<!-- CONTEÚDO COM ANIMAÇÃO QUE FUNCIONA -->
+<div id="contPage" class="cont-page">
+
+    <h1>Contato</h1>
+
+    <div class="cards">
+
+        <!-- WHATSAPP -->
+        <div class="main-card contato-card" onclick="window.open('https://wa.me/550719939954154','_blank')">
+            <img src="img/whats.png">
+            <div class="overlay"><h2>Ir até o WhatsApp</h2></div>
+        </div>
+
+        <!-- INSTAGRAM -->
+        <div class="main-card contato-card" onclick="window.open('https://instagram.com/_lzbarber','_blank')">
+            <img src="img/insta.jpg">
+            <div class="overlay"><h2>Ir até o Insta</h2></div>
+        </div>
+
+        <!-- TIK TOK -->
+        <div class="main-card contato-card" onclick="window.open('https://www.tiktok.com/@_lzbarber','_blank')">
+            <img src="img/tiktok.jpg">
+            <div class="overlay"><h2>Ir até o Tik Tok</h2></div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    /* ANIMAÇÃO DE SAÍDA */
+    document.getElementById("voltarBtn").addEventListener("click", () => {
+        const page = document.getElementById("contPage");
+
+        page.classList.add("exit");
+
+        setTimeout(() => {
+            window.location = "index.html";
+        }, 350);
+    });
+</script>
+
+</body>
+</html>

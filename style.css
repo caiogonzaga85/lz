@@ -315,3 +315,191 @@ h1 {
         transform: translateY(0);
     }
 }
+/* ===========================
+   ITEM DO MENU SELECIONADO
+=========================== */
+
+.dropdown-menu button {
+    padding: 15px 22px;
+    font-size: 17px;
+    border-left: 4px solid transparent;
+    transition: 0.25s ease;
+}
+
+.dropdown-menu button.active {
+    background: rgba(0,0,0,0.08);
+    border-left-color: #4f8cff; /* azul moderno */
+    font-weight: bold;
+    transform: translateX(4px);
+}
+
+.dropdown-menu button:hover {
+    opacity: 0.7;
+}
+
+/* temas claro / escuro alternado */
+.dropdown-menu {
+    transition: background 0.35s ease, color 0.35s ease;
+}
+/* ===== MENU ZEBRADO + SELEÇÃO ===== */
+
+.menu-item {
+    width: 100%;
+    padding: 18px 25px;
+    text-align: left;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.menu-item:hover {
+    filter: brightness(0.85);
+}
+
+.dropdown-menu {
+    padding-top: 90px; 
+    border-left: 1px solid rgba(255,255,255,0.1);
+    background: transparent;   /* importante */
+}
+
+/* ===========================
+   MENU LATERAL — DESIGN PREMIUM
+=========================== */
+
+/* Remove qualquer sombra feia no menu */
+.dropdown-menu {
+    background: #fff; /* base clara */
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    padding-top: 90px;
+}
+
+/* Cada item zebra bem elegante */
+.menu-item {
+    width: 100%;
+    padding: 18px 25px;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: 0.25s ease;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Zebra com visual suave */
+.menu-item:nth-child(odd) {
+    background: #000;
+    color: #fff;
+}
+
+.menu-item:nth-child(even) {
+    background: #fff;
+    color: #000;
+}
+
+/* Aba ativa — elegante */
+.menu-item.active {
+    border-left: 6px solid #4f8cff;
+    background: linear-gradient(90deg, rgba(79,140,255,0.10), transparent 60%);
+    transform: translateX(4px);
+}
+
+/* Hover bonito */
+.menu-item:hover {
+    filter: brightness(0.85);
+}
+
+/* Remove aquela mancha feia de sombra do topo */
+.header {
+    box-shadow: none !important;
+}
+/* ======== TOPO ORGANIZADO ======== */
+
+.top-bar {
+    position: fixed;
+    top: 20px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: space-between; /* separa os dois lados */
+    align-items: center;
+    z-index: 3000;
+}
+
+/* Botão conferir */
+.status-btn {
+    background: #000;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 2px solid #fff;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.2s ease;
+}
+
+.status-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Ícone do menu */
+.menu-button {
+    font-size: 32px;
+    background: none;
+    cursor: pointer;
+    color: #000;
+    z-index: 3001;
+}
+/* BOTÃO TRAÇAR ROTA — BRANCO COM LETRAS PRETAS */
+.rota-btn {
+    margin-top: 22px;
+    background: #ffffff;               /* FUNDO BRANCO */
+    color: #000000;                    /* LETRAS PRETAS */
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    border: 2px solid #000;            /* BORDA PRETA ELEGANTE */
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+
+/* HOVER BONITO */
+.rota-btn:hover {
+    transform: scale(1.06);
+    background: #f0f0f0;               /* leve mudança para dar vida */
+}
+/* Ajuste do enquadramento das fotos nos cards */
+.main-card img,
+.card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;         /* mantém preenchimento */
+    object-position: center;   /* Foca no MEIO da imagem */
+    border-radius: 15px 15px 0 0;
+}
+
+/* ANIMAÇÃO 3D PREMIUM NOS CARDS */
+.main-card,
+.card {
+    transform-style: preserve-3d;
+    transition: transform 0.35s ease, box-shadow 0.3s ease;
+}
+
+/* HOVER 3D */
+.main-card:hover,
+.card:hover {
+    transform: perspective(900px) rotateX(6deg) rotateY(-6deg) scale(1.05);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.4);
+}
+
+/* CLIQUE */
+.main-card:active,
+.card:active {
+    transform: scale(0.92);
+}

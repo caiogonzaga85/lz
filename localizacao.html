@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localização - LZ Barber</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* container animado */
+        .loc-container {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+            padding: 120px 20px 40px 20px;
+            text-align: center;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* animação saída */
+        .exit {
+            animation: fadeOutDown 0.45s ease forwards !important;
+        }
+
+        @keyframes fadeOutDown {
+            from { opacity: 1; transform: translateY(0); }
+            to   { opacity: 0; transform: translateY(40px); }
+        }
+
+        /* MAPA */
+        .map-box {
+            width: 90%;
+            max-width: 900px;
+            height: 420px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+            animation: mapFade 1s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes mapFade {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* botão voltar fixo */
+        .voltar-btn {
+            position: fixed;
+            top: 90px;
+            left: 20px;
+            background: #000;
+            color: #fff;
+            border: 2px solid #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+            z-index: 3000;
+            transition: .25s;
+        }
+
+        .voltar-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* botão rota */
+        .rota-btn {
+            margin-top: 22px;
+            background: #4f8cff;
+            color: #fff;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: .25s;
+        }
+        .rota-btn:hover {
+            transform: scale(1.05);
+            background: #3e73d8;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <img src="img/branca.jpg" alt="LZ Barber">
+</div>
+
+<!-- BOTÃO VOLTAR -->
+<button class="voltar-btn" id="voltarBtn">← Voltar</button>
+
+<!-- CONTEÚDO -->
+<div id="locPage" class="loc-container">
+
+    <h1>Localização</h1>
+
+    <div class="map-box">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3899.7018020664195!2d-38.4815092!3d-13.0044833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7161b001786d395%3A0xc39df8cd136ca401!2slz%20Barber!5e0!3m2!1spt-BR!2sbr!4v1600000000000"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+
+    <button class="rota-btn"
+        onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=-13.0044885,-38.4789343','_blank')">
+        Traçar rota até a barbearia
+    </button>
+
+</div>
+
+<script>
+    document.getElementById("voltarBtn").addEventListener("click", () => {
+        const page = document.getElementById("locPage");
+        page.classList.add("exit");
+
+        setTimeout(() => {
+            window.location = "index.html";
+        }, 350);
+    });
+</script>
+
+</body>
+</html>

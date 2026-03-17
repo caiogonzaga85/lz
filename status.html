@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status da Barbearia</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER MESMO DO INDEX -->
+<div class="header">
+    <img src="img/branca.jpg" alt="LZ Barber">
+</div>
+
+<div id="app">
+
+    <section class="page active">
+        <h1>Status da Barbearia 💈</h1>
+
+        <div style="text-align:center; margin-top:40px;">
+            <h2 id="statusText" style="font-size:30px;">Carregando...</h2>
+
+            <button class="back-btn" onclick="window.location='index.html'">
+                ← Voltar ao início
+            </button>
+        </div>
+
+    </section>
+
+</div>
+
+<script>
+    function verificarStatus() {
+        const agora = new Date();
+        const hora = agora.getHours();
+
+        const abre = 9;
+        const fecha = 19;
+
+        let status = (hora >= abre && hora < fecha)
+            ? "🟢 Estamos abertos!"
+            : "🔴 Fechado no momento.";
+
+        document.getElementById("statusText").textContent = status;
+    }
+
+    verificarStatus();
+</script>
+
+</body>
+</html>

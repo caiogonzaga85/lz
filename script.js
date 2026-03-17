@@ -2,19 +2,23 @@
 // SISTEMA DE NAVEGAÇÃO ENTRE ABAS
 // ===============================
 function navigate(pageId) {
+
     // Remove página ativa
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
 
-    // Adiciona a nova página ativa
+    // Ativa nova página
     const page = document.getElementById(pageId);
     page.classList.add('active');
 
-    // Força cards a animarem novamente
+    // Animação dos cards
     page.querySelectorAll('.card, .main-card').forEach((el, i) => {
         el.style.animation = "none";
-        void el.offsetWidth; // reinicia animação
+        void el.offsetWidth;
         el.style.animation = `fadeUp 0.6s ease forwards ${i * 0.08}s`;
     });
+
+    // Atualiza o menu zebra + seleção
+    updateMenuStyles(pageId);
 }
 
 
@@ -26,32 +30,24 @@ function verificarStatus() {
     const agora = new Date();
     const hora = agora.getHours();
 
-    // Horário exemplo
     const abre = 9;
     const fecha = 19;
 
-    let status;
-
-    if (hora >= abre && hora < fecha) {
-        status = "🟢 Estamos abertos!";
-    } else {
-        status = "🔴 Fechado no momento.";
-    }
+    let status = (hora >= abre && hora < fecha)
+        ? "🟢 Estamos abertos!"
+        : "🔴 Fechado no momento.";
 
     document.getElementById("statusText").textContent = status;
 }
-
 verificarStatus();
 
 
 
 // ===============================
-// MENU HAMBÚRGUER (SLIDE DA DIREITA)
+// MENU HAMBÚRGUER (SLIDE)
 // ===============================
 function toggleMenu() {
     const menu = document.getElementById("dropdownMenu");
-
-    // ADICIONA / REMOVE A CLASSE CORRETA
     menu.classList.toggle("open");
 }
 
@@ -60,7 +56,7 @@ function toggleMenu() {
 // ===============================
 // FECHAR MENU AO CLICAR EM UMA ABA
 // ===============================
-document.querySelectorAll(".dropdown-menu button").forEach(btn => {
+document.querySelectorAll(".menu-item").forEach(btn => {
     btn.addEventListener("click", () => {
         document.getElementById("dropdownMenu").classList.remove("open");
     });
@@ -69,7 +65,7 @@ document.querySelectorAll(".dropdown-menu button").forEach(btn => {
 
 
 // ===============================
-// ANIMAÇÃO DE “CLICK” NOS CARDS
+// ANIMAÇÃO DE CLICK NOS CARDS
 // ===============================
 document.querySelectorAll(".card, .main-card").forEach(card => {
     card.addEventListener("mousedown", () => {
@@ -106,9 +102,42 @@ document.querySelectorAll(".back-btn").forEach(btn => {
 
 
 // ===============================
-// (Opcional) Reset animações ao abrir o APP
+// MENU ZEBRADO + ITEM ATIVO
+// ===============================
+function updateMenuStyles(activePage) {
+    const items = document.querySelectorAll(".menu-item");
+
+    items.forEach((item, index) => {
+
+        const page = item.dataset.page;
+
+        // Zebra (alternância preto/branco)
+        if (index % 2 === 0) {
+            item.style.background = "#000";
+            item.style.color = "#fff";
+        } else {
+            item.style.background = "#fff";
+            item.style.color = "#000";
+        }
+
+        // Aba ativa
+        if (page === activePage) {
+            item.style.borderLeft = "5px solid #4f8cff";
+            item.style.fontWeight = "bold";
+            item.style.transform = "translateX(5px)";
+        } else {
+            item.style.borderLeft = "5px solid transparent";
+            item.style.fontWeight = "normal";
+            item.style.transform = "translateX(0)";
+        }
+    });
+}
+
+
+
+// ===============================
+// INICIALIZAÇÃO DO APP
 // ===============================
 window.onload = () => {
-    const home = document.getElementById("ref");
-    home.classList.add("active");
+    navigate("ref"); // Página inicial
 };
