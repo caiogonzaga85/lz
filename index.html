@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LZ Barber</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- MENU HAMBÚRGUER -->
+<div class="menu-button" onclick="toggleMenu()">
+    ☰
+</div>
+
+<!-- MENU DROPDOWN -->
+<div id="dropdownMenu" class="dropdown-menu">
+    <button onclick="navigate('ref'); toggleMenu();">Referências</button>
+    <button onclick="navigate('loc'); toggleMenu();">Localização</button>
+    <button onclick="navigate('cont'); toggleMenu();">Contato</button>
+    <button onclick="navigate('status'); toggleMenu();">Status</button>
+</div>
+
+<!-- FAIXA BRANCA + LOGO -->
+<div class="header">
+    <img src="img/branca.jpg" alt="LZ Barber">
+</div>
+
+<!-- Telas -->
+<div id="app">
+
+    <!-- Página de Referências -->
+    <section id="ref" class="page active">
+        <h1>Trabalhos 💈</h1>
+
+        <div class="cards">
+
+            <!-- CARD 1 -->
+            <div class="main-card" onclick="navigate('pig')">
+                <img src="img/pig1.jpg" alt="Pigmentações">
+                <div class="overlay">
+                    <h2>Pigmentações</h2>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="main-card" onclick="navigate('nevou')">
+                <img src="img/nevou1.jpg" alt="Nevou">
+                <div class="overlay">
+                    <h2>Nevou</h2>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="main-card" onclick="navigate('reflexos')">
+                <img src="img/reflexo.jpg" alt="Reflexos">
+                <div class="overlay">
+                    <h2>Reflexos</h2>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="pig" class="page">
+    <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
+    <h1>Pigmentações</h1>
+
+    <div class="cards">
+
+        <!-- CARD 1 -->
+        <div class="card">
+            <img src="img/pig2.jpg" alt="Pigmentação 1">
+        
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="card">
+            <img src="img/pig3.jpg" alt="Pigmentação 2">
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="card">
+            <img src="img/pig4.jpg" alt="Pigmentação 3">
+        </div>
+
+    </div>
+</section>
+
+    <section id="nevou" class="page">
+    <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
+    <h1>Nevou</h1>
+
+    <div class="cards">
+
+        <!-- CARD 1 -->
+        <div class="card">
+            <img src="img/nevou2.jpg" alt="Nevou Estilo 1">
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="card">
+            <img src="img/nevou3.jpg" alt="Nevou Estilo 2">
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="card">
+            <img src="img/nevou4.jpg" alt="Nevou Estilo 3">
+        </div>
+
+    </div>
+</section>
+
+   <section id="reflexos" class="page">
+    <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
+    <h1>Reflexos</h1>
+
+    <div class="cards">
+
+        <!-- CARD 1 -->
+        <div class="card">
+            <img src="img/reflexo.jpg" alt="Reflexos estilo 1">
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="card">
+            <img src="img/reflexo1.jpg" alt="Reflexos estilo 2">
+        </div>
+
+    
+
+    </div>
+</section>
+
+    <!-- Página Localização -->
+    <section id="loc" class="page">
+        <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
+        <h1>Localização</h1>
+
+        <iframe 
+            class="map"
+            src="https://www.google.com/maps/embed?pb=!1m18..."
+            allowfullscreen
+            loading="lazy">
+        </iframe>
+    </section>
+
+    <!-- Página Contato -->
+    <section id="cont" class="page">
+        <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
+        <h1>Contato</h1>
+
+        <a class="btn" href="https://wa.me/55SEU_NUMERO">WhatsApp</a>
+        <a class="btn" href="https://instagram.com/SEU_USER">Instagram</a>
+    </section>
+
+    <!-- Página Status -->
+    <section id="status" class="page">
+        <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
+        <h1>Status da Barbearia</h1>
+        <p id="statusText">Carregando...</p>
+    </section>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
