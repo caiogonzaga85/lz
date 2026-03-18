@@ -9,6 +9,14 @@
 </head>
 <body>
 
+<!-- ÁUDIO AUTOMÁTICO + LOOP -->
+<audio id="bgMusic" autoplay loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<!-- BOTÃO PAUSE/PLAY DA MÚSICA -->
+<div id="musicBtn" class="music-btn">🔊</div>
+
 <!-- ÍCONE DO MENU – FUNCIONA E NÃO SOME MAIS -->
 <div class="menu-button" onclick="toggleMenu()">☰</div>
 
@@ -58,6 +66,7 @@
         </div>
     </section>
 
+    
     <!-- Página Pigmentações -->
     <section id="pig" class="page">
         <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
@@ -93,12 +102,36 @@
         </div>
     </section>
 
-   
-
-
 </div>
 
 <script src="script.js"></script>
+
+<!-- SCRIPT PARA GARANTIR AUTOPLAY NO CELULAR + BOTÃO PAUSE -->
+<script>
+const audio = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+let isPlaying = true;
+
+// Força tocar no primeiro clique (iOS/Android exigem interação)
+document.addEventListener('click', function firstPlay() {
+    audio.play();
+    document.removeEventListener('click', firstPlay);
+});
+
+// Controle do botão
+musicBtn.addEventListener("click", () => {
+    if (isPlaying) {
+        audio.pause();
+        musicBtn.textContent = "🔇"; // Ícone mute
+        isPlaying = false;
+    } else {
+        audio.play();
+        musicBtn.textContent = "🔊"; // Ícone som
+        isPlaying = true;
+    }
+});
+</script>
 
 </body>
 </html>
