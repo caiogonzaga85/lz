@@ -6,6 +6,9 @@
     <title>LZ Barber</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+
 </head>
 <body>
 
@@ -131,6 +134,14 @@ musicBtn.addEventListener("click", () => {
         isPlaying = true;
     }
 });
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js")
+    .then(() => console.log("✅ Service Worker registrado"))
+    .catch(err => console.log("❌ Erro no SW", err));
+}
 </script>
 
 </body>
