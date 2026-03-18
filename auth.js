@@ -104,3 +104,15 @@ function copiarEabrir() {
     // abre whatsapp
     window.open("https://wa.me/", "_blank");
 }
+function abrirInstagram() {
+    // abre o instagram no perfil principal
+    window.open("https://www.instagram.com/", "_blank");
+}
+function baixarImagem() {
+    const link = document.createElement("a");
+    link.href = "../img/designer.png"; 
+    link.download = "LZ-Barbearia-Story.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}

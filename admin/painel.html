@@ -51,6 +51,12 @@ input{
     <button id="btnToggle" onclick="toggleStatus()">Carregar...</button>
 </div>
 
+<div class="notif-box">
+    <h2>Abrir Instagram</h2>
+    <p>Toque para abrir o Instagram e postar nos stories.</p>
+    <button onclick="abrirInstagram()">Abrir Instagram</button>
+</div>
+
 <!-- ENVIAR MENSAGEM PARA WHATSAPP -->
 <div class="notif-box">
     <h2>Enviar Mensagem no WhatsApp</h2>
@@ -59,6 +65,12 @@ input{
 </div>
 <button onclick="copiarEabrir()">Copiar texto e ir pro wpp(aberto ou fechado)</button>
 <p id="statusCopyMsg" style="color:lightgreen; margin-top:10px;"></p>
+
+<div class="notif-box">
+    <h2>Baixar imagem do Story</h2>
+    <p>Clique para baixar a imagem pronta para postar.</p>
+    <button onclick="baixarImagem()">Baixar imagem</button>
+</div>
 
 <!-- BOTÃO DE SAIR -->
 <button onclick="logout()" style="background:red;color:white;">Sair</button>
