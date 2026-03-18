@@ -9,25 +9,20 @@
 </head>
 <body>
 
-<!-- TOPO: MENU + BOTÃO STATUS -->
-<div class="top-bar">
-    <button class="status-btn" onclick="window.location='status.html'">
-       ON/OFF?
-    </button>
-
-    <div class="menu-button" onclick="toggleMenu()">☰</div>
-</div>
+<!-- ÍCONE DO MENU – FUNCIONA E NÃO SOME MAIS -->
+<div class="menu-button" onclick="toggleMenu()">☰</div>
 
 <!-- MENU DROPDOWN -->
 <div id="dropdownMenu" class="dropdown-menu">
 
     <button class="menu-item" data-page="ref" onclick="navigate('ref')">Referências</button>
-   <button class="menu-item" data-page="loc" onclick="window.location='localizacao.html'">
-    Localização
-</button>
-    <button class="menu-item" onclick="window.location='contato.html'">
-    Contato
-</button>
+
+    <button class="menu-item" data-page="loc" onclick="navigate('loc')">Localização</button>
+
+    <button class="menu-item" data-page="cont" onclick="navigate('cont')">Contato</button>
+
+    <!-- NOVA ABA ON/OFF DENTRO DO MENU -->
+    <button class="menu-item" onclick="window.location='status.html'">ON/OFF</button>
 
 </div>
 
@@ -98,7 +93,18 @@
         </div>
     </section>
 
-  
+    <!-- Página Localização -->
+    <section id="loc" class="page">
+        <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
+        <h1>Localização</h1>
+
+        <iframe 
+            class="map"
+            src="https://www.google.com/maps?q=R.+Oleg%C3%A1rio+Mariano,+185+-+Chapada+do+Rio+Vermelho,+Salvador+-+BA,+41920-130&output=embed"
+            allowfullscreen
+            loading="lazy">
+        </iframe>
+    </section>
 
     <!-- Página Contato -->
     <section id="cont" class="page">
