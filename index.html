@@ -167,11 +167,6 @@ installButton.addEventListener("click", async () => {
     installButton.style.display = "none";
 });
 
-// se já estiver instalado, esconde
-window.addEventListener("appinstalled", () => {
-    installButton.style.display = "none";
-});
-
 // MOSTRAR O BOTÃO MESMO QUE O EVENTO NÃO DISPARAR
 setTimeout(() => {
     if (!deferredPrompt) {
