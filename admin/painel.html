@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LZ Barber - Painel</title>
+
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            font-family: Arial;
+            padding: 30px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        button {
+            padding: 10px 16px;
+            background: red;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h2>Painel Admin - LZ Barber</h2>
+        <button onclick="logout()">Sair</button>
+    </div>
+
+    <h3>Aqui é onde você poderá adicionar:</h3>
+    <ul>
+        <li>Fotos novas</li>
+        <li>Status da barbearia</li>
+        <li>Notificações push</li>
+        <li>Editar páginas</li>
+    </ul>
+
+    <script>
+        // Bloquear acesso se não estiver logado
+        netlifyIdentity.on('init', user => {
+            if (!user) {
+                window.location.href = "login.html";
+            }
+        });
+
+        function logout() {
+            netlifyIdentity.logout();
+            window.location.href = "login.html";
+        }
+    </script>
+
+</body>
+</html>
