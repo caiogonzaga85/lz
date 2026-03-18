@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
-
 </head>
 <body>
 
@@ -20,32 +19,33 @@
 <!-- BOTÃO PAUSE/PLAY DA MÚSICA -->
 <div id="musicBtn" class="music-btn">🔊</div>
 
-<!-- ÍCONE DO MENU – FUNCIONA E NÃO SOME MAIS -->
+<!-- ÍCONE DO MENU -->
 <div class="menu-button" onclick="toggleMenu()">☰</div>
 
-<!-- MENU DROPDOWN -->
+<!-- MENU LATERAL -->
 <div id="dropdownMenu" class="dropdown-menu">
 
-    <button class="menu-item" data-page="ref" onclick="navigate('ref')">Referências</button>
-
+    <button class="menu-item" onclick="navigate('ref')">Referências</button>
     <button class="menu-item" onclick="window.location='localizacao.html'">Localização</button>
-
-   <button class="menu-item" onclick="window.location='contato.html'">Contato</button>
-
-    <!-- NOVA ABA ON/OFF DENTRO DO MENU -->
+    <button class="menu-item" onclick="window.location='contato.html'">Contato</button>
     <button class="menu-item" onclick="window.location='status.html'">ON/OFF</button>
+
+    <!-- BOTÃO INSTALAR APP -->
+    <button id="installButton" class="menu-item install-app-btn" style="display:none;">
+        📲 Instalar App
+    </button>
 
 </div>
 
-<!-- FAIXA BRANCA + LOGO -->
+<!-- TOPO COM LOGO -->
 <div class="header">
     <img src="img/branca.jpg" alt="LZ Barber">
 </div>
 
-<!-- TELAS -->
+<!-- CONTEÚDO DO APP -->
 <div id="app">
 
-    <!-- Página de Referências -->
+    <!-- REFERÊNCIAS -->
     <section id="ref" class="page active">
         <h1>Trabalhos 💈</h1>
 
@@ -69,8 +69,7 @@
         </div>
     </section>
 
-    
-    <!-- Página Pigmentações -->
+    <!-- PIGMENTAÇÕES -->
     <section id="pig" class="page">
         <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
         <h1>Pigmentações</h1>
@@ -82,7 +81,7 @@
         </div>
     </section>
 
-    <!-- Página Nevou -->
+    <!-- NEVOU -->
     <section id="nevou" class="page">
         <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
         <h1>Nevou</h1>
@@ -94,7 +93,7 @@
         </div>
     </section>
 
-    <!-- Página Reflexos -->
+    <!-- REFLEXOS -->
     <section id="reflexos" class="page">
         <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
         <h1>Reflexos</h1>
@@ -109,39 +108,66 @@
 
 <script src="script.js"></script>
 
-<!-- SCRIPT PARA GARANTIR AUTOPLAY NO CELULAR + BOTÃO PAUSE -->
+<!-- MÚSICA -->
 <script>
 const audio = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicBtn");
-
 let isPlaying = true;
 
-// Força tocar no primeiro clique (iOS/Android exigem interação)
 document.addEventListener('click', function firstPlay() {
     audio.play();
     document.removeEventListener('click', firstPlay);
 });
 
-// Controle do botão
 musicBtn.addEventListener("click", () => {
     if (isPlaying) {
         audio.pause();
-        musicBtn.textContent = "🔇"; // Ícone mute
+        musicBtn.textContent = "🔇";
         isPlaying = false;
     } else {
         audio.play();
-        musicBtn.textContent = "🔊"; // Ícone som
+        musicBtn.textContent = "🔊";
         isPlaying = true;
     }
 });
 </script>
 
+<!-- SERVICE WORKER -->
 <script>
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js")
-    .then(() => console.log("✅ Service Worker registrado"))
-    .catch(err => console.log("❌ Erro no SW", err));
+    .then(() => console.log("Service Worker registrado"))
+    .catch(err => console.log("Erro no SW", err));
 }
+</script>
+
+<!-- BOTÃO INSTALAR APP -->
+<script>
+let deferredPrompt;
+const installButton = document.getElementById("installButton");
+
+window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    deferredPrompt = event;
+    installButton.style.display = "block";
+});
+
+installButton.addEventListener("click", async () => {
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+    const result = await deferredPrompt.userChoice;
+
+    deferredPrompt = null;
+    installButton.style.display = "none";
+});
+
+// para garantir que aparece mesmo se o navegador não disparar o evento
+setTimeout(() => {
+    if (!deferredPrompt) {
+        installButton.style.display = "block";
+    }
+}, 2000);
 </script>
 
 </body>

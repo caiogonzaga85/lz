@@ -30,7 +30,6 @@ html, body {
     z-index: 2000;
 }
 
-/* CORREÇÃO IMPORTANTE — A LOGO NÃO PODE EXPLODIR NO ANDROID */
 .header img {
     height: 50px;
     max-height: 50px;
@@ -49,9 +48,9 @@ html, body {
     z-index: 3000;
 }
 
-/* Empurra o conteúdo para baixo do header */
+/* empurra o conteúdo pra baixo do header */
 #app {
-    padding-top: 85px; /* antes 90px, estava criando espaço branco */
+    padding-top: 85px;
 }
 
 /* ============================================
@@ -71,7 +70,6 @@ body {
 
     background-size: cover, cover, 180px;
     background-repeat: repeat;
-
     animation: bgmove 18s infinite alternate ease-in-out;
 }
 
@@ -81,7 +79,7 @@ body {
 }
 
 /* ============================================
-   TRANSIÇÃO ENTRE ABAS
+   ANIMAÇÃO ENTRE ABAS
 ============================================ */
 .page {
     display: none;
@@ -99,6 +97,7 @@ body {
 
 .page h1 {
     text-align: center;
+    color: #fff;
 }
 
 /* ============================================
@@ -146,7 +145,7 @@ body {
     font-weight: bold;
 }
 
-/* Hover */
+/* Hover efeito suave */
 .card:hover,
 .main-card:hover {
     transform: scale(1.05);
@@ -220,7 +219,7 @@ body {
 }
 
 /* ============================================
-   MÚSICA
+   BOTÃO PLAY/PAUSE DA MÚSICA
 ============================================ */
 .music-btn {
     position: fixed;
@@ -246,7 +245,7 @@ body {
 }
 
 /* ============================================
-   ANIMAÇÃO GERAL
+   ANIMAÇÃO DOS CARDS
 ============================================ */
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
