@@ -17,9 +17,9 @@
 
     <button class="menu-item" data-page="ref" onclick="navigate('ref')">Referências</button>
 
-    <button class="menu-item" data-page="loc" onclick="navigate('loc')">Localização</button>
+    <button class="menu-item" onclick="window.location='localizacao.html'">Localização</button>
 
-    <button class="menu-item" data-page="cont" onclick="navigate('cont')">Contato</button>
+   <button class="menu-item" onclick="window.location='contato.html'">Contato</button>
 
     <!-- NOVA ABA ON/OFF DENTRO DO MENU -->
     <button class="menu-item" onclick="window.location='status.html'">ON/OFF</button>
@@ -93,27 +93,8 @@
         </div>
     </section>
 
-    <!-- Página Localização -->
-    <section id="loc" class="page">
-        <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
-        <h1>Localização</h1>
+   
 
-        <iframe 
-            class="map"
-            src="https://www.google.com/maps?q=R.+Oleg%C3%A1rio+Mariano,+185+-+Chapada+do+Rio+Vermelho,+Salvador+-+BA,+41920-130&output=embed"
-            allowfullscreen
-            loading="lazy">
-        </iframe>
-    </section>
-
-    <!-- Página Contato -->
-    <section id="cont" class="page">
-        <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
-        <h1>Contato</h1>
-
-        <a class="btn" href="https://wa.me/55SEU_NUMERO">WhatsApp</a>
-        <a class="btn" href="https://instagram.com/SEU_USER">Instagram</a>
-    </section>
 
 </div>
 

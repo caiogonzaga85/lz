@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contato - LZ Barber</title>
 
-    <!-- Carrega o estilo principal -->
+    <!-- AGORA O CSS CARREGA DE VERDADE -->
     <link rel="stylesheet" href="style.css">
 
     <style>
         /* ======================
-           CORREÇÃO 1 — ENTRADA
+           ENTRADA
         =======================*/
         .cont-page {
-            opacity: 1 !important;   /* garante que aparece */
+            opacity: 1 !important;
             padding: 120px 20px 40px;
             animation: contFadeIn 0.5s ease-out forwards;
         }
@@ -24,7 +24,7 @@
         }
 
         /* ======================
-           CORREÇÃO 2 — SAÍDA
+           SAÍDA
         =======================*/
         .exit {
             animation: contFadeOut 0.45s ease forwards !important;
@@ -58,7 +58,7 @@
         }
 
         /* ======================
-           CARDS DA PÁGINA CONTATO
+           CARDS CONTATO
         =======================*/
         .contato-card {
             max-width: 360px;
@@ -79,13 +79,13 @@
     <img src="img/branca.jpg" alt="">
 </div>
 
-<!-- BOTÃO VOLTAR (agora funcional e visível SEMPRE) -->
+<!-- BOTÃO VOLTAR -->
 <button id="voltarBtn">← Voltar</button>
 
-<!-- CONTEÚDO COM ANIMAÇÃO QUE FUNCIONA -->
+<!-- CONTEÚDO -->
 <div id="contPage" class="cont-page">
 
-    <h1>Contato</h1>
+    <h1>Contato 💬</h1>
 
     <div class="cards">
 
@@ -101,7 +101,7 @@
             <div class="overlay"><h2>Ir até o Insta</h2></div>
         </div>
 
-        <!-- TIK TOK -->
+        <!-- TIKTOK -->
         <div class="main-card contato-card" onclick="window.open('https://www.tiktok.com/@_lzbarber','_blank')">
             <img src="img/tiktok.jpg">
             <div class="overlay"><h2>Ir até o Tik Tok</h2></div>
@@ -112,7 +112,6 @@
 </div>
 
 <script>
-    /* ANIMAÇÃO DE SAÍDA */
     document.getElementById("voltarBtn").addEventListener("click", () => {
         const page = document.getElementById("contPage");
 
