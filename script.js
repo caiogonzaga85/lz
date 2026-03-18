@@ -8,16 +8,17 @@ function navigate(pageId) {
 
     // Ativa nova página
     const page = document.getElementById(pageId);
+    if (!page) return;
     page.classList.add('active');
 
-    // Animação dos cards
+    // Reanima os cards
     page.querySelectorAll('.card, .main-card').forEach((el, i) => {
         el.style.animation = "none";
         void el.offsetWidth;
         el.style.animation = `fadeUp 0.6s ease forwards ${i * 0.08}s`;
     });
 
-    // Atualiza o menu zebra + seleção
+    // Atualiza o menu
     updateMenuStyles(pageId);
 }
 
@@ -37,7 +38,8 @@ function verificarStatus() {
         ? "🟢 Estamos abertos!"
         : "🔴 Fechado no momento.";
 
-    document.getElementById("statusText").textContent = status;
+    const el = document.getElementById("statusText");
+    if (el) el.textContent = status;
 }
 verificarStatus();
 
@@ -82,7 +84,7 @@ document.querySelectorAll(".card, .main-card").forEach(card => {
 
 
 // ===============================
-// ANIMAÇÃO DO BOTÃO VOLTAR
+// BOTÃO VOLTAR (efeito click)
 // ===============================
 document.querySelectorAll(".back-btn").forEach(btn => {
     btn.addEventListener("mousedown", () => {
@@ -102,7 +104,7 @@ document.querySelectorAll(".back-btn").forEach(btn => {
 
 
 // ===============================
-// MENU ZEBRADO + ITEM ATIVO
+// ZEBRA + ITEM ATIVO NO MENU
 // ===============================
 function updateMenuStyles(activePage) {
     const items = document.querySelectorAll(".menu-item");
@@ -111,7 +113,7 @@ function updateMenuStyles(activePage) {
 
         const page = item.dataset.page;
 
-        // Zebra (alternância preto/branco)
+        // zebra
         if (index % 2 === 0) {
             item.style.background = "#000";
             item.style.color = "#fff";
@@ -120,7 +122,7 @@ function updateMenuStyles(activePage) {
             item.style.color = "#000";
         }
 
-        // Aba ativa
+        // aba ativa
         if (page === activePage) {
             item.style.borderLeft = "5px solid #4f8cff";
             item.style.fontWeight = "bold";
@@ -136,33 +138,37 @@ function updateMenuStyles(activePage) {
 
 
 // ===============================
-// INICIALIZAÇÃO DO APP
+// CARREGAR PÁGINA INICIAL
 // ===============================
 window.onload = () => {
-    navigate("ref"); // Página inicial
+    navigate("ref");
 };
+
+
+
+// ===============================
+// BOTÃO INSTALAR APP (PWA)
+// ===============================
 let deferredPrompt;
 const installButton = document.getElementById("installButton");
 
 window.addEventListener("beforeinstallprompt", (event) => {
-  event.preventDefault();
-  deferredPrompt = event;
-  installButton.style.display = "block";
+    event.preventDefault();
+    deferredPrompt = event;
+    installButton.style.display = "block";
 });
 
 installButton.addEventListener("click", async () => {
-  if (!deferredPrompt) return;
+    if (!deferredPrompt) return;
 
-  deferredPrompt.prompt();
+    deferredPrompt.prompt();
+    const result = await deferredPrompt.userChoice;
 
-  const result = await deferredPrompt.userChoice;
-  console.log("Resultado da instalação:", result.outcome);
-
-  deferredPrompt = null;
-  installButton.style.display = "none";
+    deferredPrompt = null;
+    installButton.style.display = "none";
 });
 
-// Se já estiver instalado, esconder o botão
+// esconder quando já instalado
 window.addEventListener("appinstalled", () => {
-  installButton.style.display = "none";
+    installButton.style.display = "none";
 });

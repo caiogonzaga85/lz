@@ -5,44 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LZ Barber</title>
 
+    <!-- CSS CORRETO -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- MANIFEST CORRETO -->
     <link rel="manifest" href="manifest.json">
+
     <meta name="theme-color" content="#000000">
 </head>
+
 <body>
 
-<!-- ÁUDIO AUTOMÁTICO + LOOP -->
+<!-- ÁUDIO -->
 <audio id="bgMusic" autoplay loop>
     <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
-<!-- BOTÃO PAUSE/PLAY DA MÚSICA -->
 <div id="musicBtn" class="music-btn">🔊</div>
 
-<!-- ÍCONE DO MENU -->
+<!-- MENU -->
 <div class="menu-button" onclick="toggleMenu()">☰</div>
 
-<!-- MENU LATERAL -->
 <div id="dropdownMenu" class="dropdown-menu">
-
     <button class="menu-item" onclick="navigate('ref')">Referências</button>
     <button class="menu-item" onclick="window.location='localizacao.html'">Localização</button>
     <button class="menu-item" onclick="window.location='contato.html'">Contato</button>
     <button class="menu-item" onclick="window.location='status.html'">ON/OFF</button>
 
-    <!-- BOTÃO INSTALAR APP -->
     <button id="installButton" class="menu-item install-app-btn" style="display:none;">
         📲 Instalar App
     </button>
-
 </div>
 
-<!-- TOPO COM LOGO -->
+<!-- HEADER -->
 <div class="header">
     <img src="img/branca.jpg" alt="LZ Barber">
 </div>
 
-<!-- CONTEÚDO DO APP -->
+<!-- CONTEÚDO -->
 <div id="app">
 
     <!-- REFERÊNCIAS -->
@@ -72,43 +72,47 @@
     <!-- PIGMENTAÇÕES -->
     <section id="pig" class="page">
         <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
+
         <h1>Pigmentações</h1>
 
         <div class="cards">
-            <div class="card"><img src="img/pig2.jpg"></div>
-            <div class="card"><img src="img/pig3.jpg"></div>
-            <div class="card"><img src="img/pig4.jpg"></div>
+            <div class="card"><img src="img/pig2.jpg" alt=""></div>
+            <div class="card"><img src="img/pig3.jpg" alt=""></div>
+            <div class="card"><img src="img/pig4.jpg" alt=""></div>
         </div>
     </section>
 
     <!-- NEVOU -->
     <section id="nevou" class="page">
         <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
+
         <h1>Nevou</h1>
 
         <div class="cards">
-            <div class="card"><img src="img/nevou2.jpg"></div>
-            <div class="card"><img src="img/nevou3.jpg"></div>
-            <div class="card"><img src="img/nevou4.jpg"></div>
+            <div class="card"><img src="img/nevou2.jpg" alt=""></div>
+            <div class="card"><img src="img/nevou3.jpg" alt=""></div>
+            <div class="card"><img src="img/nevou4.jpg" alt=""></div>
         </div>
     </section>
 
     <!-- REFLEXOS -->
     <section id="reflexos" class="page">
         <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
+
         <h1>Reflexos</h1>
 
         <div class="cards">
-            <div class="card"><img src="img/reflexo.jpg"></div>
-            <div class="card"><img src="img/reflexo1.jpg"></div>
+            <div class="card"><img src="img/reflexo.jpg" alt=""></div>
+            <div class="card"><img src="img/reflexo1.jpg" alt=""></div>
         </div>
     </section>
 
 </div>
 
+<!-- SCRIPT PRINCIPAL -->
 <script src="script.js"></script>
 
-<!-- MÚSICA -->
+<!-- PLAY/PAUSE -->
 <script>
 const audio = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicBtn");
@@ -135,13 +139,11 @@ musicBtn.addEventListener("click", () => {
 <!-- SERVICE WORKER -->
 <script>
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js")
-    .then(() => console.log("Service Worker registrado"))
-    .catch(err => console.log("Erro no SW", err));
+    navigator.serviceWorker.register("service-worker.js");
 }
 </script>
 
-<!-- BOTÃO INSTALAR APP -->
+<!-- INSTALAR APP -->
 <script>
 let deferredPrompt;
 const installButton = document.getElementById("installButton");
@@ -153,20 +155,13 @@ window.addEventListener("beforeinstallprompt", (event) => {
 });
 
 installButton.addEventListener("click", async () => {
-    if (!deferredPrompt) return;
-
     deferredPrompt.prompt();
-    const result = await deferredPrompt.userChoice;
-
     deferredPrompt = null;
     installButton.style.display = "none";
 });
 
-// para garantir que aparece mesmo se o navegador não disparar o evento
 setTimeout(() => {
-    if (!deferredPrompt) {
-        installButton.style.display = "block";
-    }
+    if (!deferredPrompt) installButton.style.display = "block";
 }, 2000);
 </script>
 
