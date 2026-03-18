@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LZ Barber - Login Admin</title>
+
+<style>
+body {
+    background: #000;
+    color: #fff;
+    font-family: Arial;
+    text-align: center;
+    padding-top: 100px;
+}
+.box {
+    background: #111;
+    padding: 30px;
+    width: 300px;
+    margin: auto;
+    border-radius: 10px;
+}
+input {
+    width: 90%;
+    padding: 12px;
+    margin-top: 15px;
+}
+button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Login Admin</h2>
+    <input type="password" id="senha" placeholder="Digite a senha">
+    <button onclick="login()">Entrar</button>
+</div>
+
+<div id="erro" style="margin-top:15px;color:red;font-weight:bold;"></div>
+
+<script src="../auth.js"></script>
+</body>
+</html>

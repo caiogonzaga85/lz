@@ -1,63 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LZ Barber - Painel</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Admin</title>
 
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-    <style>
-        body {
-            background: #000;
-            color: #fff;
-            font-family: Arial;
-            padding: 30px;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 30px;
-        }
-        button {
-            padding: 10px 16px;
-            background: red;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            border-radius: 6px;
-        }
-    </style>
+<style>
+body{
+    background:#000;
+    color:#fff;
+    padding:30px;
+    font-family:Arial;
+}
+button{
+    padding:10px 15px;
+    background:#fff;
+    border:none;
+    cursor:pointer;
+    margin-top:20px;
+}
+.status-box{
+    margin-top:40px;
+    background:#111;
+    padding:20px;
+    border-radius:10px;
+    width:320px;
+    text-align:center;
+}
+</style>
 </head>
 
 <body>
 
-    <div class="header">
-        <h2>Painel Admin - LZ Barber</h2>
-        <button onclick="logout()">Sair</button>
-    </div>
+<h1>Painel Admin</h1>
+<p>Bem-vindo à área privada.</p>
 
-    <h3>Aqui é onde você poderá adicionar:</h3>
-    <ul>
-        <li>Fotos novas</li>
-        <li>Status da barbearia</li>
-        <li>Notificações push</li>
-        <li>Editar páginas</li>
-    </ul>
+<!-- STATUS DA BARBEARIA -->
+<div class="status-box">
+    <h2>Status da Barbearia:</h2>
+    <h1 id="statusTexto">Carregando...</h1>
 
-    <script>
-        // Bloquear acesso se não estiver logado
-        netlifyIdentity.on('init', user => {
-            if (!user) {
-                window.location.href = "login.html";
-            }
-        });
+    <button id="btnToggle" onclick="toggleStatus()">Carregar...</button>
+</div>
 
-        function logout() {
-            netlifyIdentity.logout();
-            window.location.href = "login.html";
-        }
-    </script>
+<!-- BOTÃO DE SAIR -->
+<button onclick="logout()" style="background:red;color:white;">Sair</button>
+
+<script src="../auth.js"></script>
 
 </body>
 </html>

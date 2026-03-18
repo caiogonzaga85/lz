@@ -13,13 +13,13 @@
 
 <!-- ÁUDIO AUTOMÁTICO + LOOP -->
 <audio id="bgMusic" autoplay loop>
-    <source src="musica.mp3" type="audio/mpeg">
+  <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
 <!-- BOTÃO PAUSE/PLAY DA MÚSICA -->
 <div id="musicBtn" class="music-btn">🔊</div>
 
-<!-- ÍCONE DO MENU – FUNCIONA E NÃO SOME MAIS -->
+<!-- ÍCONE DO MENU -->
 <div class="menu-button" onclick="toggleMenu()">☰</div>
 
 <!-- MENU DROPDOWN -->
@@ -29,10 +29,12 @@
 
     <button class="menu-item" onclick="window.location='localizacao.html'">Localização</button>
 
-   <button class="menu-item" onclick="window.location='contato.html'">Contato</button>
+    <button class="menu-item" onclick="window.location='contato.html'">Contato</button>
 
-    <!-- NOVA ABA ON/OFF DENTRO DO MENU -->
     <button class="menu-item" onclick="window.location='status.html'">ON/OFF</button>
+
+    <!-- BOTÃO ADMIN ADICIONADO AQUI -->
+    <button class="menu-item" onclick="window.location='admin/login.html'">Admin</button>
 
 </div>
 
@@ -44,10 +46,9 @@
 <!-- TELAS -->
 <div id="app">
 
-    <!-- Página de Referências -->
+    <!-- Referências -->
     <section id="ref" class="page active">
         <h1>Trabalhos 💈</h1>
-
         <div class="cards">
 
             <div class="main-card" onclick="navigate('pig')">
@@ -68,8 +69,7 @@
         </div>
     </section>
 
-    
-    <!-- Página Pigmentações -->
+    <!-- Pigmentações -->
     <section id="pig" class="page">
         <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
         <h1>Pigmentações</h1>
@@ -81,7 +81,7 @@
         </div>
     </section>
 
-    <!-- Página Nevou -->
+    <!-- Nevou -->
     <section id="nevou" class="page">
         <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
         <h1>Nevou</h1>
@@ -93,7 +93,7 @@
         </div>
     </section>
 
-    <!-- Página Reflexos -->
+    <!-- Reflexos -->
     <section id="reflexos" class="page">
         <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
         <h1>Reflexos</h1>
@@ -106,30 +106,28 @@
 
 </div>
 
+<!-- SCRIPT PRINCIPAL -->
 <script src="script.js"></script>
 
-<!-- SCRIPT PARA GARANTIR AUTOPLAY NO CELULAR + BOTÃO PAUSE -->
+<!-- SCRIPT DO AUDIO -->
 <script>
 const audio = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicBtn");
-
 let isPlaying = true;
 
-// Força tocar no primeiro clique (iOS/Android exigem interação)
 document.addEventListener('click', function firstPlay() {
     audio.play();
     document.removeEventListener('click', firstPlay);
 });
 
-// Controle do botão
 musicBtn.addEventListener("click", () => {
     if (isPlaying) {
         audio.pause();
-        musicBtn.textContent = "🔇"; // Ícone mute
+        musicBtn.textContent = "🔇";
         isPlaying = false;
     } else {
         audio.play();
-        musicBtn.textContent = "🔊"; // Ícone som
+        musicBtn.textContent = "🔊";
         isPlaying = true;
     }
 });

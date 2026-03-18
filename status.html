@@ -20,7 +20,10 @@
         <h1>Status da Barbearia 💈</h1>
 
         <div style="text-align:center; margin-top:40px;">
-            <h2 id="statusText" style="font-size:30px;">Carregando...</h2>
+            <h2 style="font-size:30px;">
+                <span id="statusIcon">🟡</span>
+                <span id="statusText">Carregando...</span>
+            </h2>
 
             <button class="back-btn" onclick="window.location='index.html'">
                 ← Voltar ao início
@@ -32,21 +35,29 @@
 </div>
 
 <script>
-    function verificarStatus() {
-        const agora = new Date();
-        const hora = agora.getHours();
+    // LER STATUS DEFINIDO NO PAINEL
+    function carregarStatus() {
+        let estado = localStorage.getItem("estadoBarbearia");
 
-        const abre = 9;
-        const fecha = 19;
+        const statusText = document.getElementById("statusText");
+        const statusIcon = document.getElementById("statusIcon");
 
-        let status = (hora >= abre && hora < fecha)
-            ? "🟢 Estamos abertos!"
-            : "🔴 Fechado no momento.";
+        if (!estado) {
+            estado = "fechada";
+        }
 
-        document.getElementById("statusText").textContent = status;
+        if (estado === "aberta") {
+            statusText.textContent = "Estamos abertos!";
+            statusText.style.color = "lightgreen";
+            statusIcon.textContent = "🟢";
+        } else {
+            statusText.textContent = "Fechado no momento.";
+            statusText.style.color = "red";
+            statusIcon.textContent = "🔴";
+        }
     }
 
-    verificarStatus();
+    carregarStatus();
 </script>
 
 </body>
