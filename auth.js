@@ -75,3 +75,32 @@ function logout() {
     localStorage.removeItem("admin");
     window.location.href = "login.html";
 }
+function enviarWpp() {
+    // mensagem pronta
+    const msg = "Barbearia aberta! 💈";
+
+    // codifica para URL
+    const encoded = encodeURIComponent(msg);
+
+    // abre whatsapp
+    window.open(`https://wa.me/?text=${encoded}`, "_blank");
+}
+function copiarEabrir() {
+    let estado = localStorage.getItem("estadoBarbearia");
+
+    let msg = "";
+
+    if (estado === "aberta") {
+        msg = "Barbearia aberta! 💈";
+    } else {
+        msg = "Barbearia fechada ✂️";
+    }
+
+    // copia para clipboard
+    navigator.clipboard.writeText(msg).then(() => {
+        document.getElementById("statusCopyMsg").textContent = "Mensagem copiada! Abra o WhatsApp e poste no Status.";
+    });
+
+    // abre whatsapp
+    window.open("https://wa.me/", "_blank");
+}

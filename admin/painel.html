@@ -19,13 +19,21 @@ button{
     cursor:pointer;
     margin-top:20px;
 }
-.status-box{
+.status-box, .notif-box{
     margin-top:40px;
     background:#111;
     padding:20px;
     border-radius:10px;
     width:320px;
     text-align:center;
+    margin-bottom:30px;
+}
+input{
+    width:90%;
+    padding:10px;
+    margin-top:10px;
+    border:none;
+    border-radius:5px;
 }
 </style>
 </head>
@@ -42,6 +50,15 @@ button{
 
     <button id="btnToggle" onclick="toggleStatus()">Carregar...</button>
 </div>
+
+<!-- ENVIAR MENSAGEM PARA WHATSAPP -->
+<div class="notif-box">
+    <h2>Enviar Mensagem no WhatsApp</h2>
+    <p>Enviar status da barbearia no WhatsApp:</p>
+    <button onclick="enviarWpp()">Enviar no WhatsApp</button>
+</div>
+<button onclick="copiarEabrir()">Postar no Status (rápido)</button>
+<p id="statusCopyMsg" style="color:lightgreen; margin-top:10px;"></p>
 
 <!-- BOTÃO DE SAIR -->
 <button onclick="logout()" style="background:red;color:white;">Sair</button>
