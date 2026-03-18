@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LZ Barber</title>
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
+    style.css
+    manifest.json
     <meta name="theme-color" content="#000000">
 
 </head>
@@ -30,10 +30,15 @@
 
     <button class="menu-item" onclick="window.location='localizacao.html'">Localização</button>
 
-   <button class="menu-item" onclick="window.location='contato.html'">Contato</button>
+    <button class="menu-item" onclick="window.location='contato.html'">Contato</button>
 
     <!-- NOVA ABA ON/OFF DENTRO DO MENU -->
     <button class="menu-item" onclick="window.location='status.html'">ON/OFF</button>
+
+    <!-- BOTÃO PERSONALIZADO INSTALAR APP -->
+    <button id="installButton" class="menu-item install-app-btn" style="display:none;">
+        📲 Instalar App
+    </button>
 
 </div>
 
@@ -41,6 +46,7 @@
 <div class="header">
     <img src="img/branca.jpg" alt="LZ Barber">
 </div>
+
 
 <!-- TELAS -->
 <div id="app">
@@ -88,19 +94,12 @@
         <h1>Nevou</h1>
 
         <div class="cards">
-            <div class="card"><img src="img/nevou2.jpg"></div>
-            <div class="card"><img src="img/nevou3.jpg"></div>
-            <div class="card"><img src="img/nevou4.jpg"></div>
-        </div>
-    </section>
-
-    <!-- Página Reflexos -->
-    <section id="reflexos" class="page">
+            <div class="card"><img src="img/nevou2.jpg"></s" class="page">
         <button class="back-btn" onclick="navigate('ref')">← Voltar</button>
         <h1>Reflexos</h1>
 
         <div class="cards">
-            <div class="card"><img src="img/reflexo.jpg"></div>
+            <div class="card">img/reflexo.jpg</div>
             <div class="card"><img src="img/reflexo1.jpg"></div>
         </div>
     </section>
@@ -136,6 +135,7 @@ musicBtn.addEventListener("click", () => {
 });
 </script>
 
+<!-- REGISTRO DO SERVICE WORKER -->
 <script>
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js")
@@ -143,6 +143,43 @@ if ("serviceWorker" in navigator) {
     .catch(err => console.log("❌ Erro no SW", err));
 }
 </script>
+
+<script>
+let deferredPrompt;
+const installButton = document.getElementById("installButton");
+
+window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    deferredPrompt = event;
+    installButton.style.display = "block";
+});
+
+// botão clicado
+installButton.addEventListener("click", async () => {
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+
+    const result = await deferredPrompt.userChoice;
+    console.log("Instalação:", result.outcome);
+
+    deferredPrompt = null;
+    installButton.style.display = "none";
+});
+
+// se já estiver instalado, esconde
+window.addEventListener("appinstalled", () => {
+    installButton.style.display = "none";
+});
+
+// MOSTRAR O BOTÃO MESMO QUE O EVENTO NÃO DISPARAR
+setTimeout(() => {
+    if (!deferredPrompt) {
+        installButton.style.display = "block";
+    }
+}, 2000);
+</script>
+
 
 </body>
 </html>

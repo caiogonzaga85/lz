@@ -141,3 +141,28 @@ function updateMenuStyles(activePage) {
 window.onload = () => {
     navigate("ref"); // Página inicial
 };
+let deferredPrompt;
+const installButton = document.getElementById("installButton");
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredPrompt = event;
+  installButton.style.display = "block";
+});
+
+installButton.addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+
+  deferredPrompt.prompt();
+
+  const result = await deferredPrompt.userChoice;
+  console.log("Resultado da instalação:", result.outcome);
+
+  deferredPrompt = null;
+  installButton.style.display = "none";
+});
+
+// Se já estiver instalado, esconder o botão
+window.addEventListener("appinstalled", () => {
+  installButton.style.display = "none";
+});
