@@ -145,30 +145,3 @@ window.onload = () => {
 };
 
 
-
-// ===============================
-// BOTÃO INSTALAR APP (PWA)
-// ===============================
-let deferredPrompt;
-const installButton = document.getElementById("installButton");
-
-window.addEventListener("beforeinstallprompt", (event) => {
-    event.preventDefault();
-    deferredPrompt = event;
-    installButton.style.display = "block";
-});
-
-installButton.addEventListener("click", async () => {
-    if (!deferredPrompt) return;
-
-    deferredPrompt.prompt();
-    const result = await deferredPrompt.userChoice;
-
-    deferredPrompt = null;
-    installButton.style.display = "none";
-});
-
-// esconder quando já instalado
-window.addEventListener("appinstalled", () => {
-    installButton.style.display = "none";
-});
